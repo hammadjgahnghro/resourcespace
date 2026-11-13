@@ -43,7 +43,11 @@ $pagetime_start = explode(' ', $pagetime_start);
 $pagetime_start = $pagetime_start[1] + $pagetime_start[0];
 
 // Check for critical PHP security patch released 2026-10-21.
-if (!array_key_exists('memory_hard_limit_percent', ini_get_all())) {
+$has_security_patch = function_exists('ini_get_all')
+    ? array_key_exists('memory_hard_limit_percent', ini_get_all())
+    : (ini_get('memory_hard_limit_percent') !== false);
+
+if (!$has_security_patch) {
     exit(
         "Critical PHP security patch may be missing. " .
         "Please update PHP immediately or verify that your vendor has applied " .
