@@ -24,7 +24,7 @@ jobs:
           composer install --no-dev --no-progress --prefer-dist --optimize-autoloader
 
       - name: Deploy files via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
