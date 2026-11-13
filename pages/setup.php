@@ -422,7 +422,7 @@ if (get_post_bool('ajax')) {
                 }
 
                 // Setup search paths (Currently only Linux/Mac OS X)
-                $os = php_uname('s');
+                $os = PHP_OS;
                 if ($os == 'Linux' || $os == "Darwin") {
                     $search_paths[] = '/usr/bin';
                     $search_paths[] = '/sw/bin';
