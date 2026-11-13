@@ -32,10 +32,10 @@ $mysql_server = 'localhost';
 $mysql_server_port = 3306;
 
 // Database user name for read and write access.
-$mysql_username = 'root';
+$mysql_username = 'dptechsc_dptechsc';
 
 // Password for the database user with read and write access.
-$mysql_password = '';
+$mysql_password = 'wC1&GLyl$AlKT1mT';
 
 // Optional database user name for read-only connections. Leave blank to use the read/write account.
 $read_only_db_username = "";
@@ -44,7 +44,7 @@ $read_only_db_username = "";
 $read_only_db_password = "";
 
 // Name of the ResourceSpace database.
-$mysql_db = 'resourcespace';
+$mysql_db = 'dptechsc_dam';
 
 // Optional database connection character set. Set this to match the database encoding.
 // $mysql_charset = 'utf8';
