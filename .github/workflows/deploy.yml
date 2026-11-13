@@ -3,7 +3,7 @@ name: Deploy PHP App to cPanel
 on:
   push:
     branches:
-      - main # Change to 'master' or your target branch if needed
+      - master # Change to 'master' or your target branch if needed
 
 jobs:
   deploy:
