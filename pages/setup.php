@@ -529,14 +529,17 @@ if (get_post_bool('ajax')) {
                         continue;
                     }
 
-                    // Check connection
-                    $mysqli_connection = mysqli_connect($mysql_server, $mysql_username, $mysql_password);
+                    // Ensure mysqli returns false on failure instead of throwing a fatal exception (PHP 8.1+)
+                    mysqli_report(MYSQLI_REPORT_OFF);
+
+                    $mysqli_connection = @mysqli_connect($mysql_server, $mysql_username, $mysql_password);
+
                     if ($mysqli_connection === false) {
-                        switch (mysqli_errno($mysqli_connection)) {
-                            case 1045:  //User login failure.
+                        switch (mysqli_connect_errno()) {
+                            case 1045: // User login failure.
                                 $errors['databaselogin'] = true;
                                 break;
-                            default: //Must be a server problem.
+                            default: // Must be a server problem.
                                 $errors['databaseserver'] = true;
                                 break;
                         }
