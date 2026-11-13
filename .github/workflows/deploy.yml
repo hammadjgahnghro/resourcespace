@@ -1,0 +1,37 @@
+name: Deploy PHP App to cPanel
+
+on:
+  push:
+    branches:
+      - main # Change to 'master' or your target branch if needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2' # Match your cPanel MultiPHP Manager version
+          tools: composer:v2
+
+      - name: Install Composer dependencies
+        run: |
+          composer install --no-dev --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Deploy files via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /home/dptechsc/public_html/assessment/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/tests/**
+            **/node_modules/**
